@@ -31,11 +31,6 @@ class Review
     public $comment;
 
     /**
-     * @ORM\OneToMany(targetEntity="ReviewSentimentLog", mappedBy="review", cascade={"ALL"}, indexBy="review_sentiment_log")
-     */
-    public $review_sentiment_logs;
-
-    /**
      * @var string The tagged comment
      *
      * @ORM\Column(type="text")

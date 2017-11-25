@@ -24,6 +24,7 @@ class ReviewSentimentLog
 
     /**
      * @ORM\ManyToOne(targetEntity="Review", inversedBy="review_sentiment_logs")
+     * @ORM\JoinColumn(name="review_id", referencedColumnName="id")
      */
     public $review;
 
