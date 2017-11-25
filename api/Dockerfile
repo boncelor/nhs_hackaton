@@ -35,6 +35,7 @@ CMD ["php-fpm"]
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV PATH vendor/bin:$PATH
 RUN composer global require "hirak/prestissimo:^0.3" --prefer-dist --no-progress --no-suggest --classmap-authoritative
 
 # Prevent the reinstallation of vendors at every changes in the source code
