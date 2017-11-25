@@ -41,9 +41,4 @@ class ReviewSentimentLog
      * @ORM\Column(type="text")
      */
     public $sentiment;
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
 }
