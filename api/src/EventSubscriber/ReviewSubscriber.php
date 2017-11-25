@@ -4,26 +4,25 @@ namespace App\EventSubscriber;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
+use DateTime;
 use App\Entity\Review;
 
 class ReviewSubscriber implements EventSubscriber
 {
     public function getSubscribedEvents()
     {
-        return ['preCreate'];
+        return ['prePersist'];
     }
 
-    public function preCreate(LifecycleEventArgs $args){
-        $resource = $args->getObject();
+    public function prePersist(LifecycleEventArgs $args){
+        $review = $args->getObject();
 
-        if (!$resource instanceof Review) {
+        if (!$review instanceof Review) {
             return;
         }
-die();
-        if($resource->getActive()==true){
-            $hcpAvailableMsg = $this->hcpMsgBuilder->build($resource->getId());
 
-        }
+        $review->setCreatedAt(new DateTime('now'));
+
     }
 
 }
