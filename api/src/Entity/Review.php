@@ -82,4 +82,13 @@ class Review
         return $this;
     }
 
+    public function getSentiment(){
+        return $this->sentiment;
+    }
+
+    public function setSentiment($sentiment)
+    {
+        $this->sentiment = $sentiment;
+        return $this;
+    }
 }
