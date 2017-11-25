@@ -37,4 +37,5 @@ services:
            - { name: doctrine.event_subscriber, connection: default }
 
     'App\Filter\FriendlyReviewFilter':
-        tags: [ 'api_platform.filter' ]
+        tags: [
+         { name: 'api_platform.filter', id: 'friendly.filter' }]

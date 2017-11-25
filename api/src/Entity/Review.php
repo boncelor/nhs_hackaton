@@ -9,7 +9,7 @@ use App\Filter\FriendlyReviewFilter;
 
 /**
  *
- * @ApiResource(attributes={"filters"={FriendlyReviewFilter::class}})
+ * @ApiResource(attributes={"filters"={"friendly.filter"}})
  * @ORM\Entity
  */
 class Review

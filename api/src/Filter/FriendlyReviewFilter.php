@@ -22,7 +22,7 @@ final class FriendlyReviewFilter extends AbstractFilter
                 )
             )
             ->setParameter($parameterName, $value);
-    var_dump($queryBuilder->getQuery()->getSQL());die();
+
     }
 
     // This function is only used to hook in documentation generators (supported by Swagger and Hydra)
