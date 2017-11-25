@@ -57,6 +57,20 @@ class Review
      */
     public $sentiment;
 
+    /**
+     * @var integer The likes
+     *
+     * @ORM\Column(type="integer")
+     */
+    public $likes=0;
+
+    /**
+     * @var string The flags
+     *
+     * @ORM\Column(type="integer")
+     */
+    public $flags=0;
+
     public function getId(): int
     {
         return $this->id;
@@ -91,4 +105,20 @@ class Review
         $this->sentiment = $sentiment;
         return $this;
     }
+
+    public function getLikes(){
+        return $this->likes;
+    }
+    public function increaseLikes(){
+        $this->likes++;
+    }
+
+    public function getFlags(){
+        return $this->flags;
+    }
+    public function increaseFlags(){
+        $this->flags++;
+    }
+
+
 }
