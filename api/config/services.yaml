@@ -2,6 +2,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    watson_user: "%env(WATSON_USER)%"
+    watson_pass: "%env(WATSON_PASSWORD)%"
 
 services:
     # default configuration for services in *this* file

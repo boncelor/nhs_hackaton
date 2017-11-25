@@ -42,4 +42,31 @@ class ReviewSentimentLog
      * @ORM\Column(type="text")
      */
     public $sentiment;
+
+    public function setReview(Review $review){
+        $this->review = $review;
+        return $this;
+    }
+
+    public function getReview(){
+        return $this->review;
+    }
+
+
+
+
+    public function setScore(Review $review){
+        $this->review = $review;
+        return $this;
+    }
+
+    public function getScore(){
+        return $this->review;
+    }
+
+
+
+
+
+
 }
