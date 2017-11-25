@@ -5,21 +5,25 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Filter\FriendlyReviewFilter;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- *
- * @ApiResource(attributes={"filters"={"friendly.filter"}})
+ * @ApiResource(
+ *     collectionOperations={"get"={"method"="GET"},"post"={"method"="POST"}},
+ *     itemOperations={"get"={"method"="GET"}},
+ *     attributes={
+ *          "filters"={"friendly.filter"},
+ *          "normalization_context"={"groups"={"read"}},
+ *          "denormalization_context"={"groups"={"write"}}
+ * })
  * @ORM\Entity
  */
 class Review
 {
     /**
-     * @var int The entity Id
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -28,6 +32,8 @@ class Review
      *
      * @ORM\Column(type="text")
      * @Assert\NotBlank
+     *
+     * @Groups({"read", "write"})
      */
     public $comment;
 
@@ -40,6 +46,8 @@ class Review
      * @var string The tagged comment
      *
      * @ORM\Column(type="text")
+     *
+     * @Groups({"read", "write"})
      */
     public $tag;
 
@@ -47,6 +55,7 @@ class Review
      * @var date The date of the review
      *
      * @ORM\Column(type="date", nullable=true)
+     * @Groups({"read"})
      */
     public $createdAt;
 
@@ -54,6 +63,7 @@ class Review
      * @var string The sentiment of the review
      *
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"read"})
      */
     public $sentiment;
 
@@ -61,6 +71,7 @@ class Review
      * @var integer The likes
      *
      * @ORM\Column(type="integer")
+     * @Groups({"read"})
      */
     public $likes=0;
 
@@ -68,10 +79,11 @@ class Review
      * @var string The flags
      *
      * @ORM\Column(type="integer")
+     * @Groups({"read"})
      */
     public $flags=0;
 
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
