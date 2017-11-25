@@ -43,6 +43,12 @@ class ReviewSentimentLog
      */
     public $sentiment;
 
+    public function __construct(Review $review, int $score, string $sentiment) {
+        $this->setReview($review);
+        $this->setScore($score);
+        $this->setSentiment($sentiment);
+    }
+
     public function setReview(Review $review){
         $this->review = $review;
         return $this;
@@ -52,11 +58,8 @@ class ReviewSentimentLog
         return $this->review;
     }
 
-
-
-
-    public function setScore(Review $review){
-        $this->review = $review;
+    public function setScore(int $score){
+        $this->score = $score;
         return $this;
     }
 
@@ -64,9 +67,12 @@ class ReviewSentimentLog
         return $this->review;
     }
 
+    public function setSentiment(string $sentiment) {
+        $this->sentiment = $sentiment;
+        return $this;
+    }
 
-
-
-
-
+    public function getSentiment() {
+        return $this->sentiment;
+    }
 }

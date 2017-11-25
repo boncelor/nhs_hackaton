@@ -42,16 +42,10 @@ class ReviewSubscriber implements EventSubscriber
 
         $tones = json_decode($res->getBody(),true)["document_tone"]["tones"];
 
-        var_dump($tones);die();
-//        foreach ($tones as $tone) {
-//            $tone["score"];
-//            $tone["tone_id"];
-//
-//
-//        }
-//        var_dump($tones);
-//        die();
-
+        foreach ($tones as $tone) {
+            $reviewLog = new ReviewSentimentLog($review, $tone['score'], $tone['tone_id']);
+            $this->em->persist($reviewLog);
+        }
     }
 
 }
