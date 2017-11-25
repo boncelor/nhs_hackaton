@@ -11,6 +11,7 @@ final class FriendlyReviewFilter extends AbstractFilter
 {
     protected function filterProperty(string $property, $value, QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null)
     {
+
         $parameterName = $queryNameGenerator->generateParameterName($property); // Generate a unique parameter name to avoid collisions with other filters
         $queryBuilder
             ->andWhere(
@@ -21,24 +22,13 @@ final class FriendlyReviewFilter extends AbstractFilter
                 )
             )
             ->setParameter($parameterName, $value);
+    var_dump($queryBuilder->getQuery()->getSQL());die();
     }
 
     // This function is only used to hook in documentation generators (supported by Swagger and Hydra)
     public function getDescription(string $resourceClass): array
     {
         $description = [];
-        foreach ($this->properties as $property => $strategy) {
-            $description['regexp_'.$property] = [
-                'property' => $property,
-                'type' => 'string',
-                'required' => false,
-                'swagger' => [
-                    'description' => 'Filter using a regex. This will appear in the Swagger documentation!',
-                    'name' => 'Custom name to use in the Swagger documentation',
-                    'type' => 'Will appear below the name in the Swagger documentation',
-                ],
-            ];
-        }
 
         return $description;
     }
