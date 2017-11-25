@@ -28,3 +28,8 @@ services:
         resource: '../src/Controller'
         public: true
         tags: ['controller.service_arguments']
+
+    review.listener:
+       class: App\EventSubscriber\ReviewSubscriber
+       tags:
+           - { name: doctrine.event_subscriber, connection: default }

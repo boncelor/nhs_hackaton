@@ -34,23 +34,20 @@ class Review
      * @var string The tagged comment
      *
      * @ORM\Column(type="text")
-     * @Assert\NotBlank
      */
     public $tag;
 
     /**
      * @var date The date of the review
      *
-     * @ORM\Column(type="date")
-     * @Assert\NotBlank
+     * @ORM\Column(type="date", nullable=true)
      */
     public $createdAt;
 
     /**
      * @var string The sentiment of the review
      *
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank
+     * @ORM\Column(type="text", nullable=true)
      */
     public $sentiment;
 
@@ -58,4 +55,25 @@ class Review
     {
         return $this->id;
     }
+
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    public function setComment($comment){
+        $this->comment = $comment;
+        return $this;
+    }
+
+    public function getCreatedAt(){
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
 }
