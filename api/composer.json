@@ -9,7 +9,8 @@
         "symfony/console": "^3.3 || ^4.0",
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^3.3 || ^4.0",
-        "symfony/yaml": "^3.3 || ^4.0"
+        "symfony/yaml": "^3.3 || ^4.0",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "config": {
         "preferred-install": {
