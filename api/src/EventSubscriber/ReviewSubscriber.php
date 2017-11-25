@@ -45,7 +45,6 @@ class ReviewSubscriber implements EventSubscriber
         foreach ($tones as $tone) {
             $reviewLog = new ReviewSentimentLog($review, $tone['score'], $tone['tone_id']);
             $this->em->persist($reviewLog);
-            $this->em->flush();
         }
     }
 
