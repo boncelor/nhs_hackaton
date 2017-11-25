@@ -6,12 +6,12 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use DateTime;
 use App\Entity\Review;
+use App\Entity\ReviewSentimentLog;
 use GuzzleHttp\Client;
 
 class ReviewSubscriber implements EventSubscriber
 {
-    public function __construct($em, $wuser, $wpass){
-        $this->em = $em;
+    public function __construct($wuser, $wpass){
         $this->wuser = $wuser;
         $this->wpass = $wpass;
     }
@@ -23,6 +23,7 @@ class ReviewSubscriber implements EventSubscriber
 
     public function prePersist(LifecycleEventArgs $args){
         $review = $args->getObject();
+        $em = $args->getObjectManager();
 
         if (!$review instanceof Review) {
             return;
@@ -31,7 +32,6 @@ class ReviewSubscriber implements EventSubscriber
         $review->setCreatedAt(new DateTime('now'));
 
         $client = new Client();
-        //$res = $client->request('GET', 'http://www.google.com');
 
         $res = $client->request('POST', 'https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone?version=2017-09-21', [
             'auth' => [$this->wuser, $this->wpass],
@@ -42,10 +42,21 @@ class ReviewSubscriber implements EventSubscriber
 
         $tones = json_decode($res->getBody(),true)["document_tone"]["tones"];
 
+        $bestTone = null;
+        $bestToneScore = 0;
+
         foreach ($tones as $tone) {
+
             $reviewLog = new ReviewSentimentLog($review, $tone['score'], $tone['tone_id']);
-            $this->em->persist($reviewLog);
+            $em->persist($reviewLog);
+
+            if($tone['score']>$bestToneScore) {
+                $bestTone = $tone;
+            }
         }
+
+        $review->setSentiment($bestTone['tone_id']);
+
     }
 
 }
