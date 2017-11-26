@@ -14,7 +14,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     attributes={
  *          "filters"={"friendly.filter","review.tag_filter"},
  *          "normalization_context"={"groups"={"read"}},
- *          "denormalization_context"={"groups"={"write"}}
+ *          "denormalization_context"={"groups"={"write"}},
+ *          "order"={"createdAt": "DESC"}
  * })
  * @ORM\Entity
  */
@@ -54,7 +55,7 @@ class Review
     /**
      * @var date The date of the review
      *
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      * @Groups({"read"})
      */
     public $createdAt;
