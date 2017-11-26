@@ -1,5 +1,5 @@
 services:
     review.tag_filter:
         parent: 'api_platform.doctrine.orm.search_filter'
-        arguments: [ { tag: 'exact' } ]
+        arguments: [ { tag: 'partial' } ]
         tags: [ 'api_platform.filter' ]
