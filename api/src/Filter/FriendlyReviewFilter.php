@@ -16,7 +16,9 @@ final class FriendlyReviewFilter extends AbstractFilter
         $queryBuilder
             ->andWhere(
                 $queryBuilder->expr()->orX(
-                    $queryBuilder->expr()->like('o.sentiment', $queryBuilder->expr()->literal('joy'))
+                    $queryBuilder->expr()->like('o.sentiment', $queryBuilder->expr()->literal('joy')),
+                    $queryBuilder->expr()->like('o.sentiment', $queryBuilder->expr()->literal('confident')),
+                    $queryBuilder->expr()->like('o.sentiment', $queryBuilder->expr()->literal('tentative'))
                 )
             );
 
