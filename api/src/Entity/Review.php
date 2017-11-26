@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     collectionOperations={"get"={"method"="GET"},"post"={"method"="POST"}},
  *     itemOperations={"get"={"method"="GET"}},
  *     attributes={
- *          "filters"={"friendly.filter"},
+ *          "filters"={"friendly.filter","review.tag_filter"},
  *          "normalization_context"={"groups"={"read"}},
  *          "denormalization_context"={"groups"={"write"}}
  * })
