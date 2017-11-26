@@ -70,7 +70,7 @@ class Review
     /**
      * @var integer The likes
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default":0})
      * @Groups({"read"})
      */
     public $likes=0;
@@ -78,7 +78,7 @@ class Review
     /**
      * @var string The flags
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default":0})
      * @Groups({"read"})
      */
     public $flags=0;
