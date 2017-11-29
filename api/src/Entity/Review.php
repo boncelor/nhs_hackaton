@@ -24,6 +24,7 @@ class Review
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
+     * @Groups({"read"})
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
