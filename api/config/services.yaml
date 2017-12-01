@@ -31,11 +31,11 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    'App\EventSubscriber\ReviewSubscriber':
+    App\EventSubscriber\ReviewSubscriber:
        arguments: [ '%watson_user%', '%watson_pass%']
        tags:
            - { name: doctrine.event_subscriber, connection: default }
 
-    'App\Filter\FriendlyReviewFilter':
+    App\Filter\FriendlyReviewFilter:
         tags: [
          { name: 'api_platform.filter', id: 'friendly.filter' }]

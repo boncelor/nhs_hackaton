@@ -2,21 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Review;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\ConstraintViolationList;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class FeedbackController extends Controller
 {
     /**
-     * Start a transaction
-     *
      * @Route("/reviews/{id}/like")
      * @Method("PUT")
      */
@@ -30,14 +23,12 @@ class FeedbackController extends Controller
 
         $em->flush();
 
-        $data = $this->get('serializer')->serialize($review, 'jsonld', ['transaction']);
+        $data = $this->get('serializer')->serialize($review, 'jsonld', ['review']);
 
         return new Response($data, 200, ['Content-Type' => 'application/ld+json']);
     }
 
     /**
-     * Start a transaction
-     *
      * @Route("/reviews/{id}/flag")
      * @Method("PUT")
      */
@@ -51,7 +42,7 @@ class FeedbackController extends Controller
 
         $em->flush();
 
-        $data = $this->get('serializer')->serialize($review, 'jsonld', ['transaction']);
+        $data = $this->get('serializer')->serialize($review, 'jsonld', ['review']);
 
         return new Response($data, 200, ['Content-Type' => 'application/ld+json']);
     }
